@@ -1,6 +1,5 @@
-# Encoding: utf-8
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2016 the original author or authors.
+# Copyright 2013-2017 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -48,10 +47,10 @@ describe JavaBuildpack::Framework::LunaSecurityProvider do
           'groups' => [
             {
               'label'   => 'test-group-1',
-              'members' => %w(test-group-1-member-1 test-group-1-member-2)
+              'members' => %w[test-group-1-member-1 test-group-1-member-2]
             }, {
               'label'   => 'test-group-2',
-              'members' => %w(test-group-2-member-1 test-group-2-member-2)
+              'members' => %w[test-group-2-member-1 test-group-2-member-2]
             }
           ]
         }
@@ -122,7 +121,7 @@ describe JavaBuildpack::Framework::LunaSecurityProvider do
     end
 
     context do
-      let(:configuration) { { 'logging_enabled' => true } }
+      let(:configuration) { { 'logging_enabled' => true, 'ha_logging_enabled' => true } }
 
       it 'writes configuration',
          cache_fixture: 'stub-luna-security-provider.tar' do

@@ -4,6 +4,5 @@ enabled: true
 jmx:
   - object_name: app.monitor:type=MonitorExposer
     metrics:
-      - attributes: MessageInCount, MessageOutCount, MessageFailedOutCount, MeanRateIn, MeanRateOut, LastIntervalInCount, LastIntervalOutCount
+      - attributes: ClientCount, ClientsByEhub, EventhubCount, Latency98AfterDBSave, Latency98AfterSerialization, Latency98AfterValidation, MsgReceived, MsgReceivedRate, MsgSaveRate, MsgSaved
         type: simple
-

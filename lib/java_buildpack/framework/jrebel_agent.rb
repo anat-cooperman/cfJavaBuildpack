@@ -1,6 +1,5 @@
-# Encoding: utf-8
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2016 the original author or authors.
+# Copyright 2013-2017 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -40,7 +39,6 @@ module JavaBuildpack
           .java_opts
           .add_agentpath(@droplet.sandbox + ('lib/' + lib_name))
           .add_system_property('rebel.remoting_plugin', true)
-          .add_system_property('rebel.log', true)
           .add_system_property('rebel.cloud.platform', 'cloudfoundry/java-buildpack')
       end
 

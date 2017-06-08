@@ -1,6 +1,5 @@
-# Encoding: utf-8
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2016 the original author or authors.
+# Copyright 2013-2017 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -29,8 +28,8 @@ describe JavaBuildpack::Framework::DynatraceOneAgent do
   context do
 
     before do
-      allow(services).to receive(:one_service?).with(/ruxit|dynatrace/, %w(environmentid tenant),
-                                                     %w(apitoken tenanttoken)).and_return(true)
+      allow(services).to receive(:one_service?).with(/ruxit|dynatrace/, %w[environmentid tenant],
+                                                     %w[apitoken tenanttoken]).and_return(true)
       allow(services).to receive(:find_service).and_return('credentials' => { 'apitoken' => 'test-apitoken',
                                                                               'tenant'   => 'test-tenant',
                                                                               'server'   => 'test-server' })
@@ -61,8 +60,8 @@ describe JavaBuildpack::Framework::DynatraceOneAgent do
       component.release
 
       expect(java_opts).to include('-agentpath:$PWD/.java-buildpack/dynatrace_one_agent/agent/lib64/' \
-      'liboneagentloader.so=server=https://test-tenant.live.dynatrace.com,tenant=test-tenant,' \
-      'tenanttoken=token-from-file')
+      'liboneagentloader.so=server=https://endpoint1/communication\\;https://endpoint2/communication,' \
+      'tenant=test-tenant,tenanttoken=token-from-file')
     end
 
     it 'updates JAVA_OPTS with custom server and deprecated tenanttoken',
@@ -85,8 +84,8 @@ describe JavaBuildpack::Framework::DynatraceOneAgent do
       component.release
 
       expect(java_opts).to include('-agentpath:$PWD/.java-buildpack/dynatrace_one_agent/agent/lib64/' \
-      'liboneagentloader.so=server=test-server,tenant=test-tenant,' \
-      'tenanttoken=token-from-file')
+      'liboneagentloader.so=server=https://endpoint1/communication\\;https://endpoint2/communication,' \
+      'tenant=test-tenant,tenanttoken=token-from-file')
     end
 
     it 'updates environment variables',
